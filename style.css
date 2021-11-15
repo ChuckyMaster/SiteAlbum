@@ -31,7 +31,7 @@ body {
 
 header {
   display: flex;
-
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   max-width: 1080px;
@@ -39,23 +39,34 @@ header {
   margin: 0 auto;
 }
 
+header p {
+  margin: 0.5rem;
+}
+
 /* SECTION DISPLAY ALBUM */
 
 #album {
   display: flex;
-
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 2rem;
   max-width: 1080px;
-  height: 200px;
+  height: auto;
   margin: 0 auto;
 }
 
 .card {
+  margin: 0.5rem;
   display: flex;
+  border: 1px solid #8d05c259;
+  align-items: center;
+  width: auto;
+  height: 250px;
+  padding: 1rem;
 }
 
 .card img {
   width: 200px;
-  height: 200px;
 }
 .card .description {
   padding: 1.5rem;
@@ -63,21 +74,29 @@ header {
 
 form {
   display: flex;
-  margin: 2rem;
-  justify-content: center;
-  flex-direction: column;
+  text-align: center;
+  justify-content: space-evenly;
+  flex-direction: row;
   align-items: center;
   max-width: 1080px;
-  margin: 0 auto;
+  margin: 5rem auto;
 }
 
 form input {
   background-color: var(--medium-purple);
   color: white;
-  margin: 1.2rem;
+  margin: 0.25rem;
   padding: 0.5rem;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   border: none;
+}
+form div {
+  display: flex;
+  flex-direction: column;
+}
+
+form input::placeholder {
+  color: white;
 }
 
 form button {
