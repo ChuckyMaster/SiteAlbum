@@ -30,16 +30,18 @@ function displayAlbum(album) {
   let ul = document.createElement("ul");
   divD.appendChild(h3);
   divD.appendChild(ul);
-  let li = document.createElement("li");
+
   h3.innerHTML += ` ${album.nomArtiste}`;
   for (const property in album) {
+    console.log(album[property]);
+    let li = document.createElement("li");
     ul.appendChild(li);
 
-    li.innerHTML += `${album.titre}`;
-    li.innerHTML += `${album.annee}`;
+    li.innerHTML += `${property} : ${album[property]}`;
+    // li.innerHTML += `${album.annee}`;
 
-    li.innerHTML += `${album.label}`;
-    li.innerHTML += `${album.duree}`;
+    // li.innerHTML += `${album.label}`;
+    // li.innerHTML += `${album.duree}`;
   }
 }
 
