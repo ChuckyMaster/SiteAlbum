@@ -4,9 +4,54 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <title>Best Music Ever</title>
   </head>
   <body>
+    <header><h1>Welcome to the music store</h1></header>
+
+    <main>
+      <div id="album">
+        <!-- <div class="card">
+          <img src="/img/cold.jpg" alt="cold" />
+
+          <div class="description">
+            <h3>Nom artiste</h3>
+            <ul>
+              <li>Titre de l'album</li>
+              <li>Année de prod</li>
+              <li>Label</li>
+              <li>Genre</li>
+              <li>durée</li>
+              <li>Piste</li>
+            </ul>
+          </div>
+        </div> -->
+      </div>
+      <form>
+        <input
+          type="text"
+          id="titre"
+          placeholder="Entrer le titre de l'album"
+          name="titre"
+        />
+        <input
+          type="text"
+          id="artiste"
+          placeholder="Entrer le nom de l'artiste"
+          name="artiste"
+        />
+        <input
+          type="number"
+          id="annee"
+          placeholder="Annee de production"
+          name="annee"
+        />
+
+        <button id="ajouter" name="ajouter" data-mode="ajouter">Ajouter</button>
+      </form>
+    </main>
+
     <script src="main.js"></script>
   </body>
 </html>
