@@ -27,6 +27,12 @@ body {
   font-family: "Lato", sans-serif;
 }
 
+i {
+  font-size: 1.75rem;
+  color: #c872eb;
+  cursor: pointer;
+}
+
 /* HEADER */
 
 header {
@@ -60,7 +66,7 @@ header p {
   display: flex;
   border: 1px solid #8d05c259;
   align-items: center;
-  width: auto;
+
   height: 250px;
   padding: 1rem;
 }
@@ -70,6 +76,11 @@ header p {
 }
 .card .description {
   padding: 1.5rem;
+  width: auto;
+}
+
+.hide {
+  display: none;
 }
 
 form {

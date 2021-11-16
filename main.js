@@ -3,8 +3,19 @@
 /** VARIABLES */
 let btnAdd;
 let form;
+let btnTrash;
+let putain;
 /**    ARRAY OBJECT  */
-let listAlbum = new Array();
+let listAlbum = [
+  {
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiEde0SusbbxyTsjhR4cGbvR7HdfFPZHby9ReP8t-lXzHNLAgxeTmiS84K237DHHBlQ5g&usqp=CAU",
+    nomArtiste: "Gideon",
+    titre: "Cold",
+    annee: 1998,
+    label: "Arise",
+    duree: 45 + " minutes",
+  },
+];
 
 // let alb1 = {
 //   img: "/img/cold.jpg",
@@ -20,11 +31,12 @@ let listAlbum = new Array();
 function displayAlbum(album) {
   let sectionAlbum = document.querySelector("#album");
   let div = document.createElement("div");
-
   div.classList.add("card");
+
   sectionAlbum.appendChild(div);
   let img = document.createElement("img");
   img.setAttribute("src", `${album.img}`);
+
   div.appendChild(img);
   let divD = document.createElement("div");
   divD.classList.add("description");
@@ -32,6 +44,7 @@ function displayAlbum(album) {
   div.appendChild(divD);
   let ul = document.createElement("ul");
   divD.appendChild(h3);
+  divD.insertAdjacentHTML("afterend", `<i class="fas fa-trash"></i>`);
 
   h3.innerHTML += ` ${album.nomArtiste}`;
   for (const property in album) {
@@ -41,10 +54,19 @@ function displayAlbum(album) {
     ul.appendChild(li);
 
     //Affiche la propriété et le valeur
-    li.innerHTML += `${property} : ${album[property]}`;
+    li.innerHTML += `${property} : ${album[property]} `;
   }
 
-  form.reset();
+  //BOUTON TRASH PAR ICI
+  btnTrash = document.querySelectorAll("i");
+  // putain = document
+  //   .querySelector("#putain")
+  //   .addEventListener("click", console.log("shit"));
+  // putain.appendChild(btnTrash);
+  btnTrash.forEach((elem) => {
+    elem.addEventListener("click", removeOne);
+  });
+
   divD.appendChild(ul);
 }
 
@@ -52,7 +74,7 @@ function displayAlbum(album) {
 
 function catchValue() {
   let album = new Object();
-  album.img = document.querySelector("#image").files[0].name;
+  album.img = document.querySelector("#image-link").value;
   album.nomArtiste = document.querySelector("#artiste").value;
   album.titre = document.querySelector("#titre").value;
   album.annee = document.querySelector("#annee").value;
@@ -61,7 +83,8 @@ function catchValue() {
 
   console.log(album.img);
   listAlbum.push(album);
-  displayArrayAlbum(listAlbum);
+  displayAlbum(album);
+  form.reset();
 }
 
 //afficher le tabeal listAlbum
@@ -71,20 +94,28 @@ function displayArrayAlbum() {
   });
 }
 
+function removeOne(e) {
+  console.log(e.target.dataset.index);
+  console.log("la mongolie vous connaissez?!");
+  // listAlbum.splice(e.target.dataset.index, 1);
+}
+
 //Ajouter event de la fonction catchValue au button "ajouter"
 
 /** MAIN CODE */
 
 document.addEventListener("DOMContentLoaded", function () {
+  displayArrayAlbum();
   /** SELECTORS */
   form = document.querySelector("form");
   btnAdd = document.querySelector("#ajouter");
+
   /**EVENT */
 
-  btnAdd.addEventListener("click", catchValue);
   //Empeche le raffraichissement par defaut de la page au click sur le bouton submit
   form.addEventListener("submit", (e) => {
     e.preventDefault();
+    catchValue();
     return;
   });
 });
