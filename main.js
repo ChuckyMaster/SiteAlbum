@@ -28,7 +28,7 @@ let listAlbum = [
 
 /**FUNCTION */
 //afficher un album
-function displayAlbum(album) {
+function displayAlbum(album, balise) {
   let sectionAlbum = document.querySelector("#album");
   let div = document.createElement("div");
   div.classList.add("card");
@@ -44,6 +44,8 @@ function displayAlbum(album) {
   div.appendChild(divD);
   let ul = document.createElement("ul");
   divD.appendChild(h3);
+  let icone = document.createElement("i");
+  icone.innerHTML = `<i class="fas fa-trash"></i>`;
   divD.insertAdjacentHTML("afterend", `<i class="fas fa-trash"></i>`);
 
   h3.innerHTML += ` ${album.nomArtiste}`;
@@ -58,14 +60,6 @@ function displayAlbum(album) {
   }
 
   //BOUTON TRASH PAR ICI
-  btnTrash = document.querySelectorAll("i");
-  // putain = document
-  //   .querySelector("#putain")
-  //   .addEventListener("click", console.log("shit"));
-  // putain.appendChild(btnTrash);
-  btnTrash.forEach((elem) => {
-    elem.addEventListener("click", removeOne);
-  });
 
   divD.appendChild(ul);
 }
@@ -94,10 +88,11 @@ function displayArrayAlbum() {
   });
 }
 
-function removeOne(e) {
-  console.log(e.target.dataset.index);
-  console.log("la mongolie vous connaissez?!");
-  // listAlbum.splice(e.target.dataset.index, 1);
+function removeOne(album, balise) {
+  let indexAlbum = listAlbum.indexOf(album);
+
+  listAlbum.splice(indexAlbum, 1);
+  balise.remove();
 }
 
 //Ajouter event de la fonction catchValue au button "ajouter"
