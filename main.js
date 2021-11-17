@@ -28,7 +28,7 @@ let listAlbum = [
 
 /**FUNCTION */
 //afficher un album
-function displayAlbum(album, balise) {
+function displayAlbum(album) {
   let sectionAlbum = document.querySelector("#album");
   let div = document.createElement("div");
   div.classList.add("card");
@@ -52,11 +52,21 @@ function displayAlbum(album, balise) {
   div.appendChild(icone);
 
   //ICONE EDIT
-
   let editIcone = document.createElement("i");
   editIcone.classList.add("fas");
   editIcone.classList.add("fa-edit");
   div.appendChild(editIcone);
+
+  //TEST BUTTON
+  let button = document.createElement("button");
+  button.innerText = "TEST ME";
+
+  div.appendChild(button);
+
+  button.addEventListener("click", function (e) {
+    edit(album);
+    console.log("hi from edit");
+  });
 
   h3.innerHTML += ` ${album.nomArtiste}`;
   for (const property in album) {
@@ -78,6 +88,8 @@ function displayAlbum(album, balise) {
     removeOne(album, div);
   });
   divD.appendChild(ul);
+
+  //EVENT EDIT
 }
 
 //Reccupérer les input
@@ -109,8 +121,7 @@ function removeOne(album, balise) {
   listAlbum.splice(indexAlbum, 1);
   balise.remove();
 }
-
-//Ajouter event de la fonction catchValue au button "ajouter"
+// function edit() {}
 
 /** MAIN CODE */
 
