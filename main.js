@@ -5,6 +5,7 @@ let btnAdd;
 let form;
 let btnTrash;
 let putain;
+
 /**    ARRAY OBJECT  */
 let listAlbum = [
   {
@@ -17,18 +18,11 @@ let listAlbum = [
   },
 ];
 
-// let alb1 = {
-//   img: "/img/cold.jpg",
-//   nomArtiste: "Gideon",
-//   titre: "Cold",
-//   annee: 1998,
-//   label: "Arise",
-//   duree: 45 + " minutes",
-// };
-
 /**FUNCTION */
 //afficher un album
 function displayAlbum(album) {
+  //CREATE ELEMENT
+
   let sectionAlbum = document.querySelector("#album");
   let div = document.createElement("div");
   div.classList.add("card");
@@ -47,26 +41,14 @@ function displayAlbum(album) {
 
   //ICONE POUBELLE
   let icone = document.createElement("i");
-  icone.classList.add("fas");
-  icone.classList.add("fa-trash");
-  div.appendChild(icone);
+  icone.classList.add("fas", "fa-trash");
 
+  div.appendChild(icone);
   //ICONE EDIT
   let editIcone = document.createElement("i");
-  editIcone.classList.add("fas");
-  editIcone.classList.add("fa-edit");
+  editIcone.classList.add("fas", "fa-edit");
+
   div.appendChild(editIcone);
-
-  //TEST BUTTON
-  let button = document.createElement("button");
-  button.innerText = "TEST ME";
-
-  div.appendChild(button);
-
-  button.addEventListener("click", function (e) {
-    edit(album);
-    console.log("hi from edit");
-  });
 
   h3.innerHTML += ` ${album.nomArtiste}`;
   for (const property in album) {
@@ -90,12 +72,19 @@ function displayAlbum(album) {
   divD.appendChild(ul);
 
   //EVENT EDIT
+
+  editIcone.addEventListener("click", function (e) {
+    editForm(album);
+  });
 }
 
 //Reccupérer les input
 
 function catchValue() {
   let album = new Object();
+
+  console.log(album);
+
   album.img = document.querySelector("#image-link").value;
   album.nomArtiste = document.querySelector("#artiste").value;
   album.titre = document.querySelector("#titre").value;
@@ -104,6 +93,7 @@ function catchValue() {
   album.duree = document.querySelector("#duree").value;
 
   listAlbum.push(album);
+
   displayAlbum(album);
   form.reset();
 }
@@ -121,7 +111,19 @@ function removeOne(album, balise) {
   listAlbum.splice(indexAlbum, 1);
   balise.remove();
 }
-// function edit() {}
+
+// EDIT FUNCTION
+
+//passer un parametre qui reccupere l'album a push
+function editForm(alb) {
+  form.setAttribute("data-mode", "add");
+  document.querySelector("#image-link").value = alb.img;
+  document.querySelector("#artiste").value = alb.nomArtiste;
+  document.querySelector("#titre").value = alb.titre;
+  document.querySelector("#annee").value = alb.annee;
+  document.querySelector("#label").value = alb.label;
+  document.querySelector("#duree").value = alb.duree;
+}
 
 /** MAIN CODE */
 
@@ -132,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
   btnAdd = document.querySelector("#ajouter");
 
   /**EVENT */
-
+  form.setAttribute("data-mode", "edit");
   //Empeche le raffraichissement par defaut de la page au click sur le bouton submit
   form.addEventListener("submit", (e) => {
     e.preventDefault();
