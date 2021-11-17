@@ -44,23 +44,39 @@ function displayAlbum(album, balise) {
   div.appendChild(divD);
   let ul = document.createElement("ul");
   divD.appendChild(h3);
+
+  //ICONE POUBELLE
   let icone = document.createElement("i");
-  icone.innerHTML = `<i class="fas fa-trash"></i>`;
-  divD.insertAdjacentHTML("afterend", `<i class="fas fa-trash"></i>`);
+  icone.classList.add("fas");
+  icone.classList.add("fa-trash");
+  div.appendChild(icone);
+
+  //ICONE EDIT
+
+  let editIcone = document.createElement("i");
+  editIcone.classList.add("fas");
+  editIcone.classList.add("fa-edit");
+  div.appendChild(editIcone);
 
   h3.innerHTML += ` ${album.nomArtiste}`;
   for (const property in album) {
     //verifier la propriété:
-    // console.log(album[property]);
-    let li = document.createElement("li");
-    ul.appendChild(li);
+    console.log(property);
 
-    //Affiche la propriété et le valeur
-    li.innerHTML += `${property} : ${album[property]} `;
+    if (property != "img") {
+      let li = document.createElement("li");
+      ul.appendChild(li);
+
+      //Affiche la propriété et le valeur
+
+      li.innerHTML += `${property} : ${album[property]} `;
+    }
   }
 
-  //BOUTON TRASH PAR ICI
-
+  //EVENT DELETE
+  icone.addEventListener("click", function (e) {
+    removeOne(album, div);
+  });
   divD.appendChild(ul);
 }
 
@@ -75,7 +91,6 @@ function catchValue() {
   album.label = document.querySelector("#label").value;
   album.duree = document.querySelector("#duree").value;
 
-  console.log(album.img);
   listAlbum.push(album);
   displayAlbum(album);
   form.reset();

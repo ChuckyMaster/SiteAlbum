@@ -27,7 +27,19 @@ body {
   font-family: "Lato", sans-serif;
 }
 
-i {
+.fa-trash {
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+  font-size: 1.75rem;
+  color: #c872eb;
+  cursor: pointer;
+}
+
+.fa-edit {
+  position: absolute;
+  bottom: 5px;
+  right: 45px;
   font-size: 1.75rem;
   color: #c872eb;
   cursor: pointer;
@@ -62,6 +74,7 @@ header p {
 }
 
 .card {
+  position: relative;
   margin: 0.5rem;
   display: flex;
   border: 1px solid #8d05c259;
